@@ -1,12 +1,12 @@
 #pragma once
-//	«авданн€ 2 (20 % бал≥в).–еал≥зувати функц≥ю f(x), що повертаЇ список ц≥лих чисел за наступними правилами :
-//		1.	ƒл€ натуральних(ц≥лих додатн≥х) чисел n, f(n) = (n!Ц n2) mod k, k = 2, 3, Е, 160
-//		2.	ƒл€ в≥дТЇмних ц≥лих чисел n, f(n) = (n4 + n3) mod 260 Ц цифри у представленн≥ з основою 4
-//		3.	ƒл€ д≥йсних чисел d, f(d) = [exp(1 / cos(k * d))] mod 360, k = 1, 2, Е, 39
-//		4.	ƒл€ текстових р€дк≥в s, f(s) = kk mod 560, де k Ц посл≥довн≥ двозначн≥ числа з р€дку s(розд≥лен≥ дов≥льними нецифровими символами)
-//		5.	ƒл€ пари p = (a, b), f(p) = кожен елемент з≥ списку f(b), повторений к≥льк≥сть раз≥в в≥дпов≥дного елементу з≥ списку f(a)
-//		6.	ƒл€ списку v = [v1, Е, vk], f(v) = обТЇднанн€ обернених списк≥в f(vi) ([1, 2], [3, 4, 5] = > [2, 1, 5, 4, 3])
-//		7.	ƒл€ вс≥х ≥нших значень f(x) = [4, 0, 7, 0, 8]
+//	Task 2 (20 % points).Make function f(x), which returns the list of integers by the next rules :
+//		1.	For natural(integer positive) numbers n, f(n) = (n!Ц n2) mod k, k = 2, 3, Е, 160
+//		2.	For negative integers n, f(n) = (n4 + n3) mod 260 Ц numbers with the basis 4
+//		3.	For real numbers d, f(d) = [exp(1 / cos(k * d))] mod 360, k = 1, 2, Е, 39
+//		4.	For text strings s, f(s) = kk mod 560, where k Ц consistent two-digit numbers from s(separated with non-number symbols)
+//		5.	For pair p = (a, b), f(p) = every element from the list f(b), repeated the number of appropriate element from the list f(a)
+//		6.	For the list v = [v1, Е, vk], f(v) = combining of reverse lists f(vi) ([1, 2], [3, 4, 5] = > [2, 1, 5, 4, 3])
+//		7.	For all other values f(x) = [4, 0, 7, 0, 8]
 #include <iostream>
 #include <fstream>
 #include <Windows.h>
@@ -46,7 +46,7 @@ class UnitTests
 	{
 		std::vector<int> generate_integer;
 		std::list<int>	 new_list;
-		//cout << "»сходный список целых чисел считаных с файла <<textfile.txt>>: \n";
+		//cout << "The list of integers from the file <<textfile.txt>>: \n";
 		/*generate_integer = fill_vector();
 		for (size_t i = 0; i < generate_integer.size(); i++)
 		{
@@ -79,12 +79,12 @@ void filters(std::vector<T> lst)
 	//task 6
 	if (lst[0] == 1)
 	{
-		cout << "\n\n6.ƒл€ списку v=[v1,Е,vk], f(v) = обТЇднанн€ обернених списк≥в f(vi) ([1,2],[3,4,5]=>[2,1,5,4,3])\n";
+		cout << "\n\n6.For the list v=[v1,Е,vk], f(v) = combining of reverse lists f(vi) ([1,2],[3,4,5]=>[2,1,5,4,3])\n";
 		list<int> v1({ (int)lst[0], (int)lst[1] }),
 					v2({ (int)lst[2], (int)lst[3], (int)lst[4] });
 		list<int> l(lst.begin(), lst.end());
-		cout << "наш исходный список v=[v1,...,vk]: "; print_list(l, "");
-		cout << "\nнашы разделенные списки: (["; print_list(v1, ""); cout<< "], ["; print_list(v2,""); cout << "])";
+		cout << "our start list v=[v1,...,vk]: "; print_list(l, "");
+		cout << "\nour divided lists: (["; print_list(v1, ""); cout<< "], ["; print_list(v2,""); cout << "])";
 		list<int> result{ (int)lst[1], (int)lst[0], (int)lst[4], (int)lst[3], (int)lst[2] };
 		print_list(result, "\nresult list => ");
 		return;
@@ -92,24 +92,24 @@ void filters(std::vector<T> lst)
 
 	if (static_cast<int>(lst[0]) != lst[0]) // Is double or float numbers
 	{
-		cout << "\n\n3.ƒл€ д≥йсних чисел d, f(d) = [exp(1 / cos(k * d))] mod 360, k = 1, 2, Е, 39\n";
+		cout << "\n\n3.For real numbers d, f(d) = [exp(1 / cos(k * d))] mod 360, k = 1, 2, Е, 39\n";
 		int k = 1;
 		list<double> list_for_print(lst.begin(), lst.end());
-		print_list(list_for_print, "»сходный список действительных  чисел: ");
+		print_list(list_for_print, "Start list of real numbers: ");
 		vector<double> vec(lst.begin(), lst.end());
 		for (size_t i = 0; i < lst.size(); i++)
 		{
 			vec[i] = int(exp(1 / cos(k * vec[i]))) % 360; k++;
 		}
 		list<double> result(vec.begin(), vec.end());
-		print_list(result, "\n–езультирующий список действительных  чисел: ");		return;
+		print_list(result, "\nFinal list of real numbers: ");		return;
 
 	}
 
 	if (lst[0] == 5)
 	{
-		//5.ƒл€ пари p = (a, b), f(p) = кожен елемент з≥ списку f(b), повторений к≥льк≥сть раз≥в в≥дпов≥дного елементу з≥ списку f(a)
-		cout << "\n\n\n5.ƒл€ пари p = (a, b), f(p) = кожен елемент з≥ списку f(b), повторений к≥льк≥сть раз≥в в≥дпов≥дного елементу з≥\nсписку f(a)\n";
+		//5.For pair p = (a, b), f(p) = every element from the list f(b), repeated the number of appropriate element from the list f(a)
+		cout << "\n\n\n5.For pair p = (a, b), f(p) = every element from the list f(b), repeated the number of appropriate element from the\nlist f(a)\n";
 		vector<int> a = fill_vector(),
 			b = fill_vector();
 		cout << "elem list f(a):  {";
@@ -139,7 +139,7 @@ void filters(std::vector<T> lst)
 			index_b++;
 			index_a++;
 		}
-		cout << "\nѕолученый список f(p) (p = (a,b)): ";
+		cout << "\nFinal list f(p) (p = (a,b)): ";
 		print_list(p, "");		return;
 
 
@@ -148,11 +148,11 @@ void filters(std::vector<T> lst)
 
 	if (IsPossitiveNumbers(v) && v[0] != 7 && v[0]!=44)
 	{
-		//1. ƒл€ натуральних(ц≥лих додатн≥х) чисел n, f(n) = (n!Ц n2) mod k, k = 2, 3, Е, 160
-		cout << endl << "1.ƒл€ натуральних(ц≥лих додатн≥х) чисел n, f(n) = (n!Ц n2) mod k, k = 2, 3, Е, 160\n";
-		//cout << "»сходный список целых положытельных чисел: ";
+		//1. For natural(integer positive) numbers n, f(n) = (n!Ц n2) mod k, k = 2, 3, Е, 160
+		cout << endl << "1.For natural(integer positive) numbers n, f(n) = (n!Ц n2) mod k, k = 2, 3, Е, 160\n";
+		//cout << "Start list of integer positive numbers: ";
 		list<int> list_for_print(lst.begin(), lst.end());
-		print_list(list_for_print, "»сходный список целых положытельных чисел: ");
+		print_list(list_for_print, "Start list of integer positive numbers: ");
 		int k = 2;
 		list<int> res_list;
 		for (size_t i = 0; i < lst.size() - 1; i++)
@@ -160,34 +160,34 @@ void filters(std::vector<T> lst)
 			res_list.push_back( int(fact(lst[i]) - lst[i + 1] )  % k );
 			k++;
 		}
-		print_list(res_list, "\n–езультирующий список чисел: ");
+		print_list(res_list, "\nFinal list of numbers: ");
 		return;
 
 	}
 
 	if (IsNegativeNumbers(v))
 	{
-		//2.	ƒл€ в≥дТЇмних ц≥лих чисел n, f(n) = (n4 + n3) mod 260 Ц цифри у представленн≥ з основою 4
+		//2.	For negative integers n, f(n) = (n4 + n3) mod 260 Ц numbers with the basis 4
 
-		cout << "\n\n2.ƒл€ в≥дТЇмних ц≥лих чисел n, f(n) = (n4 + n3) mod 260: "; 
+		cout << "\n\n2.For negative integers n, f(n) = (n4 + n3) mod 260: "; 
 		list<int> list_for_print(lst.begin(), lst.end());
-		print_list(list_for_print, "»сходный список целых положытельных чисел: ");
+		print_list(list_for_print, "Start list of integer negative numbers: ");
 		list<double> res_list;
 		for (size_t i = 0; i < lst.size() ; i++)
 		{
 			res_list.push_back(int((pow(lst[i], 4) + pow(lst[i], 3))) % 260);
 		}
-		print_list(res_list, "\n–езультирующий список чисел: ");
+		print_list(res_list, "\nFinal list of numbers: ");
 		return;
 
 	}
 		
 	//task 7
 	else if(lst[0]==7) {
-		cout << "\n\n7.ƒл€ вс≥х ≥нших значень f(x) = [4, 0, 7, 0, 8]";
+		cout << "\n\n7.For all other values f(x) = [4, 0, 7, 0, 8]";
 		vector<int> vec(lst.begin(), lst.end());
 		list<int> lst(lst.begin(), lst.end());
-		print_list(lst, "\n»сходный список: ");
+		print_list(lst, "\nStart list: ");
 		for (size_t i = 0; i < lst.size(); i++)
 		{
 			if (i % 2 == 0)
@@ -196,7 +196,7 @@ void filters(std::vector<T> lst)
 			}
 		}
 		list<int> result(vec.begin(), vec.end());
-		print_list(result, "\nResult список: ");
+		print_list(result, "\nFinal list: ");
 		return;
 
 	}
@@ -204,9 +204,9 @@ void filters(std::vector<T> lst)
 	//task 4
 	if(lst[0]== 44)
 	{
-		cout << "\n\n4.ƒл€ текстових р€дк≥в s, f(s) = k^k mod 560, де k Ц посл≥довн≥ двозначн≥ числа з р€дку s(розд≥лен≥ дов≥льними нецифровими символами)";
+		cout << "\n\n4.For text strings s, f(s) = k^k mod 560, where k Ц consistent two-digit numbers from s(separated with non-number symbols)";
 		list<int> lists({lst.begin(), lst.end()});
-		cout << "\n»сходный список: ";
+		cout << "\nStart list: ";
 		list<string> list_str({ "12fd34","23<44g" });
 		print_list(list_str, "");
 		vector<float> l = { 12, 34, 23, 44 };
@@ -222,12 +222,12 @@ void filters(std::vector<T> lst)
 
 long double fact(int N)
 {
-	if (N < 0) // если пользователь ввел отрицательное число
-		return 0; // возвращаем ноль
-	if (N == 0) // если пользователь ввел ноль,
-		return 1; // возвращаем факториал от нул€ - не удивл€етесь, но это 1 =)
-	else // ¬о всех остальных случа€х
-		return N * fact(N - 1); // делаем рекурсию.
+	if (N < 0) // if the negative number
+		return 0; // return 0
+	if (N == 0) // if the number is 0,
+		return 1; // return the factorial of 0, don't be surprized, but it's 1 =)
+	else // All other variants
+		return N * fact(N - 1); // work recursively.
 }
 
 template<typename T>
